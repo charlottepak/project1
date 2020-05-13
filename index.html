@@ -15,10 +15,11 @@
     <br>
  
     <div id="btns" class="button">
-    <button class="restartbtn">restart</button>
-    <button class="dealbtn">deal</button>
-    <button class="hitbtn">hit</button>
-    <button class="standbtn">stand</button>
+    <input type='button' id='restartbtn' value='restart' onclick='restart();'/>
+    <input type='button' id='dealbtn' value='deal' onclick='dealCards();'/>    
+    <input type='button' id='hitbtn' value='hit' onclick='hit();'/>
+    <input type='button' id='standbtn' value='stand' onclick='stand();'/>
+
     </div>
 
     <br><br>   
@@ -27,14 +28,14 @@
         <p1>PLAYER</p1>
         <br><br>
 
-                <div id="playerCards">cards</div>
+                <div id="playerCards"></div>
 
             <br><br><br>
-            <p id="score">score: </p>
+            <p id="playerScore"></p>
            
     </div>
 
-    <p2>____ wins!</p2>
+    <p2 id=displayWinner></p2>
 
     <div id="borderbox"> 
         <p1>DEALER</p1>
@@ -43,7 +44,7 @@
                 <div id="dealerCards">cards</div>
 
             <br><br><br>
-        <p id="score">score: </p>
+        <p id="dealerScore"></p>
     </div>
 </div>
 
