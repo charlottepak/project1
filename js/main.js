@@ -3,6 +3,8 @@
 const masterDeck = [];
 var suits = ["spades", "diamonds", "clubs", "hearts"];
 var cardValues = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const player;
+const dealer;
 // const suits = ['s', 'c', 'd', 'h'];
 // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 /*----- app's state (variables) -----*/
@@ -12,6 +14,7 @@ let playerDeck = [], dealerDeck = []; // arrays to hold cards
 let playerCards = [], dealerCards = []
 let bet, bankroll;
 let playerScore = 0;
+
 
 /*----- cached element references -----*/
 
@@ -36,7 +39,6 @@ function createDeck() {
             
 		}
     }
-    console.log(deck);
     return deck;
 } 
 
@@ -68,10 +70,15 @@ function dealCards() {
 }
  
 
-function countScore() {
+function countPlayerScore() {
     playerCards.forEach(function(playerCard) {
-        console.log(playerCard);
         playerScore += playerCard.num 
+    })
+}
+
+function countDealerScore() {
+    dealerCards.forEach(function(dealerCard) {
+        dealerScore += dealerCard.num
     })
 }
 
@@ -81,10 +88,30 @@ function playerHit() {
 }
 
 function dealerHit() {
-    dealerCards.push(dealerDeck[0]);
-    dealerDeck.shift();    
+    if (dealerCards <= 17) {
+        dealerCards.push(dealerDeck[0]);
+    dealerDeck.shift();
+    } else {
+        dealerCards = dealerCards;
+    }
 }
 
+
+function checkForWinner() {
+    if (playerScore === 21) {
+        let winner = player;
+    } else if (playerScore > 21) {
+            let winner = dealer;
+        } else if (dealerScore === 21) {
+                let winner = dealer;
+            } else if (dealerScore >= 17 && playerScore > dealerScore && playerScore < 21) {
+                    let winner = player;
+                } else if (dealerScore >= 17 && playerScore < dealerScore && dealerScore < 21) {
+                        let winner = dealer;
+                    } else if (dealerScore > 21) {
+                            let winner = player;
+                        } else let winner = null;
+    }
  
 
 
