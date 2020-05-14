@@ -25,7 +25,9 @@ let dealerScore = 0;
 
 /*----- functions -----*/
 
-function createDeck() {
+
+// creates the deck
+function createDeck() { 
 	for(var i = 0; i < suits.length; i++)
 	{
 		for(var x = 0; x < cardValues.length; x++)
@@ -42,7 +44,7 @@ function createDeck() {
 } 
 
 
-
+// splits the deck into 2 decks to be the player's deck and dealer's deck
 function dealCards() {
     document.getElementById("playerCards").innerHTML = "" 
     document.getElementById("dealerCards").innerHTML = ""
@@ -56,6 +58,7 @@ function dealCards() {
         }
     }
 
+    // gives the cards to the player and dealer's hands and removes them from their decks
     playerCards.push(playerDeck[0]);
     playerDeck.shift();
     playerCards.push(playerDeck[0]);
@@ -66,11 +69,13 @@ function dealCards() {
     dealerCards.push(dealerDeck[0]);
     dealerDeck.shift();
 
+    // displays the cards on the screen
     playerCards.forEach(function(card) {
         document.getElementById("playerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
     })
     dealerCards.forEach(function(card, i) {
 
+        // deturmins whether the card should be face up or down
         if (i === 0) {
             document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
         } else {
@@ -85,7 +90,7 @@ function dealCards() {
 
 }
  
-
+// counts the player's score
 function countPlayerScore() {
     playerScore = 0;
     playerCards.forEach(function(playerCard) {
@@ -94,6 +99,7 @@ function countPlayerScore() {
     document.querySelector("#playerScore").innerText = `score: ${playerScore}`;
 }
 
+// counts the dealer's score
 function countDealerScore() {
     dealerScore = 0;
     dealerCards.forEach(function(dealerCard) {
@@ -101,6 +107,7 @@ function countDealerScore() {
     })
 }
 
+// adds a card to the player's hand and adds to the score
 function hit() {
     playerCards.push(playerDeck[0]);
     playerDeck.shift();
@@ -129,17 +136,18 @@ function dealerAce() {
         dealerScore = dealerScore - 10;
     }
 }
+/////////////////////////////////
 
-
+// ends the game
 function stand() {
 
     document.getElementById("dealerCards").innerHTML = ""
-        
+        // makes all the dealer cards face up
         dealerCards.forEach(function(card) {
             document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
         })
 
-
+    // determines whether the dealer should add to their hand or not
     while (dealerScore <= 17) {
         dealerCards.push(dealerDeck[0]);
         let card = dealerDeck.shift();
@@ -147,14 +155,14 @@ function stand() {
          document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
           dealerScore += card.num
     }
-
+    // displays the dealers score
     document.querySelector("#dealerScore").innerText = `score: ${dealerScore}`;
     checkForWinner()
     displayWinner()
 }
 
 
-
+// determins the winner
 function checkForWinner() {
     if (playerScore === 21) {
         winner = player;
@@ -174,7 +182,7 @@ function checkForWinner() {
                                 } else winner = null;
     }
 
-
+// displays the winner
 function displayWinner() {
     if (winner === player) {
         document.querySelector("#displayWinner").innerText = `YOU WIN!`;
@@ -186,7 +194,7 @@ function displayWinner() {
 
         }
 
-
+// clears the board to restart the game
 function restart() {
     winner = null; 
     document.querySelector("#displayWinner").innerText = ``;
