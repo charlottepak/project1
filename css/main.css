@@ -38,15 +38,17 @@ header {
 #score {
     text-align: center;
 }
+
 p2 {
     color: white;
 }
 
-.button {
-    height: 40px;
-    width: 80px;
+#restartbtn, #hitbtn, #standbtn {
+    height: 60px;
+    width: 60px;
     margin-left: 50px;
     margin-right: 50px;
+
 }
 #boxes {
     display: flex;

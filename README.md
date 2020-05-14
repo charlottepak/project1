@@ -25,6 +25,7 @@ Game Play Instructions
 
 
 Potential Next Steps:
-- Make it impossible to click 'deal' after starting the game
+- Make it impossible to click 'hit' after the game is over
 - Enhance the game visuals
 - Use media queries 
+- Add betting feature

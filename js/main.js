@@ -82,16 +82,10 @@ function dealCards() {
         } else {
             document.getElementById("dealerCards").innerHTML += `<div class="card back"></div>`  
         }
-        
-
 })
-
-       
-
-
 }
  
-// counts the player's score
+// counts the player's score and takes ace into account
 function countPlayerScore() {
     playerScore = 0;
     let aces = 0;
@@ -108,7 +102,7 @@ function countPlayerScore() {
     document.querySelector("#playerScore").innerText = `score: ${playerScore}`;
 }
 
-// counts the dealer's score
+// counts the dealer's score and takes ace into account
 function countDealerScore() {
     dealerScore = 0;
     let aces = 0;
@@ -132,12 +126,9 @@ function hit() {
     playerCards.forEach(function(card) {
         document.getElementById("playerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
  })
-    
-
     countPlayerScore();
     if (playerScore > 21) {
         stand();
-  
     }    
 }
 
@@ -168,32 +159,23 @@ function stand() {
 
 // determins the winner
 function checkForWinner() {
-    console.log(playerScore)
-    console.log(dealerScore)
     if (playerScore === 21 && dealerScore !== 21) {
         winner = "player";
-        console.log(winner)
     } else if (playerScore > 21 & dealerScore < 21) {
             winner = "dealer";
-            console.log(winner)
         } else if (dealerScore === 21 && playerScore !== 21) {
                 winner = "dealer";
-                console.log(winner)
             } else if (playerScore === 21 && dealerScore !== 21) {
                 } else if (playerScore > dealerScore && playerScore < 21) {
                     winner = "player";
-                    console.log(winner)
                     } else if (playerScore < dealerScore && dealerScore < 21) {
                          winner = "dealer";
-                         console.log(winner)
                         } else if (dealerScore > 21 && playerScore < 21) {
                             winner = "player";
-                            console.log(winner)
                             } else if (playerScore > 21 && dealerScore > 21) {
                                 winner = null;
-                                console.log(winner)
                                 } else winner = null;
-                                console.log(winner)
+                           
     }
 
 // displays the winner
