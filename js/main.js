@@ -5,15 +5,15 @@ var suits = ["s", "d", "c", "h"];
 var cardValues = ["A", "02", "03", "04", "05", "06", "07", "08", "09", "10", "J", "Q", "K"];
 let player;
 let dealer;
-// const suits = ['s', 'c', 'd', 'h'];
-// const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
+
 /*----- app's state (variables) -----*/
 let deck =[]; 
-let winner; //ip=in progress, "p"=player wins, "d"=dealer wins, "t"=tie, "pbj"=player blackjack, "dbj"=dealer blackjack
-let playerDeck = [], dealerDeck = []; // arrays to hold cards
-let playerCards = [], dealerCards = []
+let winner;
+let playerDeck = [], dealerDeck = []; // arrays to hold seperate decks
+let playerCards = [], dealerCards = [] // arrays to hold the cards dealt to them
 let bet, bankroll;
 let playerScore = 0;
+let dealerScore = 0;
 
 
 /*----- cached element references -----*/
@@ -21,7 +21,6 @@ let playerScore = 0;
 
 
 /*----- event listeners -----*/
-/*clicks
 
 
 /*----- functions -----*/
@@ -36,7 +35,6 @@ function createDeck() {
             else if(cardValues[x] != "A") card.num = 10
             else {card.num = 11}
             deck.push(card);
-                console.log(card);
         }
     }
 
@@ -44,9 +42,6 @@ function createDeck() {
 } 
 
 
-
-
-// document.querySelector("dealbtn").addEventListener("click", dealCards);
 
 function dealCards() {
     document.getElementById("playerCards").innerHTML = "" 
@@ -68,26 +63,31 @@ function dealCards() {
     
     dealerCards.push(dealerDeck[0]);
     dealerDeck.shift();
+    dealerCards.push(dealerDeck[0]);
+    dealerDeck.shift();
 
     playerCards.forEach(function(card) {
         document.getElementById("playerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
     })
-    dealerCards.forEach(function(card) {
-        document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
-    })
+    dealerCards.forEach(function(card, i) {
 
+        if (i === 0) {
+            document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
+        } else {
+            document.getElementById("dealerCards").innerHTML += `<div class="card back"></div>`  
+        }
+        
 
-    dealerCards.push(dealerDeck[0]);
-    dealerDeck.shift();
+})
 
-    dealerCards.forEach(function(card) {
-        document.getElementById("dealerCards").innerHTML += `<div class="card back"></div>`
-    })
+       
+
 
 }
  
 
 function countPlayerScore() {
+    playerScore = 0;
     playerCards.forEach(function(playerCard) {
         playerScore += playerCard.num 
     })
@@ -95,6 +95,7 @@ function countPlayerScore() {
 }
 
 function countDealerScore() {
+    dealerScore = 0;
     dealerCards.forEach(function(dealerCard) {
         dealerScore += dealerCard.num
     })
@@ -103,57 +104,76 @@ function countDealerScore() {
 function hit() {
     playerCards.push(playerDeck[0]);
     playerDeck.shift();
+    document.getElementById("playerCards").innerHTML = ""
     playerCards.forEach(function(card) {
         document.getElementById("playerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
-    })
-    if (dealerCards <= 17) {
-        dealerCards.push(dealerDeck[0]);
-        dealerDeck.shift();
-        dealerCards.forEach(function(card) {
-            document.getElementById("dealerCards").innerHTML += `<div class="card back"></div>`
-        })
-    } else {
-        dealerCards = dealerCards;
-        
+ })
     
+
+    countPlayerScore();
+    if (playerScore > 21) {
+        stand();
+  
+    }    
+}
+
+
+function playerAce() {
+    if (playerCards = document.getElementById("playerCards").innerHTML += `<div class="${card.suit}A card"></div>`) {
+        playerScore = playerScore - 10;
     }
 }
 
-function stand() {
-    if (dealerCards <= 17) {
-        dealerCards.push(dealerDeck[0]);
-        dealerDeck.shift();
-        dealerCards.forEach(function(card) {
-            document.getElementById("dealerCards").innerHTML += `<div class="card back"></div>`
-        })
-    } else {
-        dealerCards = dealerCards;
+function dealerAce() {
+    if (dealerCards = document.getElementById("dealerCards").innerHTML += `<div class="${card.suit}A card"></div>`) {
+        dealerScore = dealerScore - 10;
     }
+}
+
+
+function stand() {
+
+    document.getElementById("dealerCards").innerHTML = ""
+        
+        dealerCards.forEach(function(card) {
+            document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
+        })
+
+
+    while (dealerScore <= 17) {
+        dealerCards.push(dealerDeck[0]);
+        let card = dealerDeck.shift();
+
+         document.getElementById("dealerCards").innerHTML += `<div class="${card.cssClass} card"></div>`
+          dealerScore += card.num
+    }
+
     document.querySelector("#dealerScore").innerText = `score: ${dealerScore}`;
     checkForWinner()
     displayWinner()
 }
-//// write stand function to end the game!!!!!!!!!!!
-
-    
 
 
 
 function checkForWinner() {
     if (playerScore === 21) {
         winner = player;
-    } else if (playerScore > 21) {
+    } else if (playerScore > 21 & dealerScore < 21) {
             winner = dealer;
-        } else if (dealerScore === 21) {
+        } else if (dealerScore === 21 && playerScore !== 21) {
                 winner = dealer;
-            } else if (dealerScore >= 17 && playerScore > dealerScore && playerScore < 21) {
+            } else if (playerScore === 21 && dealerScore !== 21) {
+                } else if (playerScore > dealerScore && playerScore < 21) {
                     winner = player;
-                } else if (dealerScore >= 17 && playerScore < dealerScore && dealerScore < 21) {
+                    } else if (playerScore < dealerScore && dealerScore < 21) {
                          winner = dealer;
-                    } else if (dealerScore > 21) {
+                        } else if (dealerScore > 21 && playerScore < 21) {
                             winner = player;
-                        } else winner = null;
+                            } else if (playerScore > 21 && dealerScore > 21) {
+                                winner = null;
+                                } else winner = null;
     }
+
 
 function displayWinner() {
     if (winner === player) {
@@ -167,60 +187,24 @@ function displayWinner() {
         }
 
 
+function restart() {
+    winner = null; 
+    document.querySelector("#displayWinner").innerText = ``;
+    playerScore = null;
+    dealerScore = null;
+    document.getElementById("playerCards").innerHTML = "" 
+    document.getElementById("dealerCards").innerHTML = ""
+    document.querySelector("#playerScore").innerText = ``;
+    document.querySelector("#dealerScore").innerText = ``;
+    
+}
+
+
+
 function init() {
     createDeck()
-    dealCards()
-    countDealerScore()
+    dealCards()    
     countPlayerScore()
+    countDealerScore()
 }
 init();
-/* 1. function for interpreting the value of player and dealer's cards. 
-    Checks the sum of all the cards in the hand and determines whether an A should be 1 or 11.
-
-    4. check for winner.
-
-    5. function runs the code for when the dealer draws a card.
-
-    6. runs when the player presses the hit button and simulates drawing a card.
-
-    7. function for "stand", draws card for dealer and skips the player.
-    */
-   
-
- /*shuffle cards
-
-
-find winner
-    if playerScore > dealerScore {
-        player wins
-    }
-    elseif dealerScore > playerScore {
-        dealer wins
-    }
-
-count score
-    score = cardValues ++
-
-deturmine "push(ties)"
-    if dealerScore = playerScore {
-        push
-    }
-
-deturmine "blackjack(exactly 21)"
-    if score = 21 {
-        blackjack 
-    }
-
-deturmine "bust(> 21)"
-    if score > 21 {
-        bust
-    }
-
-deturmine A
-    if score < 21 {
-        A = 11
-    }
-    elseif score > 21 {
-        A = 1
-    }
-*/
