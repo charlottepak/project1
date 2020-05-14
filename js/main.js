@@ -94,18 +94,34 @@ function dealCards() {
 // counts the player's score
 function countPlayerScore() {
     playerScore = 0;
+    let aces = 0;
     playerCards.forEach(function(playerCard) {
         playerScore += playerCard.num 
+        if (playerCard.num === 11) {
+            aces ++;
+        }
     })
+    while (playerScore > 21 && aces) {
+        playerScore -=10;
+        aces --;
+    }
     document.querySelector("#playerScore").innerText = `score: ${playerScore}`;
 }
 
 // counts the dealer's score
 function countDealerScore() {
     dealerScore = 0;
+    let aces = 0;
     dealerCards.forEach(function(dealerCard) {
         dealerScore += dealerCard.num
+        if (dealerCard.num === 11) {
+            aces ++;
+        } 
     })
+    while (dealerScore > 21 && aces) {
+        dealerScore -=10;
+        aces --;
+    }
 }
 
 // adds a card to the player's hand and adds to the score
