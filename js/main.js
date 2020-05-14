@@ -117,7 +117,7 @@ function hit() {
     }    
 }
 
-
+/////////////////wont workkkkkk
 function playerAce() {
     if (playerCards = document.getElementById("playerCards").innerHTML += `<div class="${card.suit}A card"></div>`) {
         playerScore = playerScore - 10;
