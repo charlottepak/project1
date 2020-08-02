@@ -1,55 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blackjack</title>
     <link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+      rel="stylesheet"
+    />
     <script defer src="js/main.js"></script>
-</head>
-<body>
-    <br><br><br>
+  </head>
+  <body>
+    <br /><br /><br />
     <header>BLACKJACK</header>
-    <br>
- 
+    <br />
+
     <div id="btns" class="button">
-    <input type='button' id='restartbtn' value='restart' onclick='restart();'/>
-    <input type='button' id='hitbtn' value='hit' onclick='hit();'/>
-    <input type='button' id='standbtn' value='stand' onclick='stand();'/>
-
+      <input
+        type="button"
+        id="buttons"
+        class="btn btn-default"
+        value="restart"
+        onclick="restart();"
+      />
+      <input
+        type="button"
+        id="buttons"
+        class="btn btn-default"
+        value="hit"
+        onclick="hit();"
+      />
+      <input
+        type="button"
+        id="buttons"
+        class="btn btn-default"
+        value="stand"
+        onclick="stand();"
+      />
     </div>
 
-    <br><br>   
-<div id="boxes">
-    <div id="borderbox"> 
+    <br /><br />
+    <div id="boxes">
+      <div id="borderbox">
         <p1>PLAYER</p1>
-        <br><br>
+        <br /><br />
 
-                <div id="playerCards"></div>
+        <div id="playerCards"></div>
 
-            <br><br><br>
-            <p id="playerScore"></p>
-           
-    </div>
+        <br /><br /><br />
+        <p id="playerScore"></p>
+      </div>
 
-    <p2 id=displayWinner></p2>
+      <p2 id="displayWinner"></p2>
 
-    <div id="borderbox"> 
+      <div id="borderbox">
         <p1>DEALER</p1>
-        <br><br>
+        <br /><br />
 
-                <div id="dealerCards">cards</div>
+        <div id="dealerCards">cards</div>
 
-            <br><br><br>
+        <br /><br /><br />
         <p id="dealerScore"></p>
+      </div>
     </div>
-</div>
 
-    <br><br>
-
-
-
-</body>
+    <br /><br />
+  </body>
 </html>
