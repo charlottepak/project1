@@ -18,8 +18,8 @@ header {
     padding: 60px;
     text-align: center;
     font-size: 30px;
-
 }
+
 #cards {
     display: flex;
     flex-direction: column;

@@ -31,11 +31,6 @@ let bet, bankroll;
 let playerScore = 0;
 let dealerScore = 0;
 
-/*----- cached element references -----*/
-
-/*----- event listeners -----*/
-
-/*----- functions -----*/
 
 // creates the deck
 function createDeck() {
@@ -91,7 +86,7 @@ function dealCards() {
     ).innerHTML += `<div class="${card.cssClass} card"></div>`;
   });
   dealerCards.forEach(function (card, i) {
-    // deturmins whether the card should be face up or down
+    // determins whether the card should be face up or down
     if (i === 0) {
       document.getElementById(
         "dealerCards"
