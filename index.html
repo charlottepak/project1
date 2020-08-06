@@ -23,27 +23,13 @@
     <header>BLACKJACK</header>
     <br />
 
-    <div id="btns" class="button">
+    <div>
       <input
         type="button"
         id="buttons"
         class="btn btn-default"
-        value="play again"
+        value="restart"
         onclick="restart();"
-      />
-      <input
-        type="button"
-        id="buttons"
-        class="btn btn-default"
-        value="hit"
-        onclick="hit();"
-      />
-      <input
-        type="button"
-        id="buttons"
-        class="btn btn-default"
-        value="stand"
-        onclick="stand();"
       />
     </div>
 
@@ -56,18 +42,33 @@
         <div id="playerCards"></div>
 
         <br /><br /><br />
+    </div>
         <p id="playerScore"></p>
-      </div>
-
-      <p2 id="displayWinner"></p2>
-
-      <div id="borderbox">
-        <p1>DEALER</p1>
-        <br /><br />
-
-        <div id="dealerCards">cards</div>
-
-        <br /><br /><br />
+        
+        <p2 id="displayWinner"></p2>
+        
+        <div id="borderbox">
+            <p1>DEALER</p1>
+            <br /><br />
+            
+            <div id="dealerCards"></div>
+            
+                <div>
+                <input
+                  type="button"
+                  id="buttons"
+                  class="btn btn-default"
+                  value="hit"
+                  onclick="hit();"
+                />
+                <input
+                  type="button"
+                  id="buttons"
+                  class="btn btn-default"
+                  value="stand"
+                  onclick="stand();"
+                />
+        </div>
         <p id="dealerScore"></p>
       </div>
     </div>
