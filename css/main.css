@@ -18,6 +18,8 @@ header {
     padding: 60px;
     text-align: center;
     font-size: 30px;
+    font-weight: lighter;
+    letter-spacing: 4px;
 }
 
 #cards {
@@ -45,7 +47,7 @@ p2 {
 
 #buttons {
     width: 80px;
-    color: black;
+    color: grey;
 }
 
 #boxes {
