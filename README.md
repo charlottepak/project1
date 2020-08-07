@@ -5,7 +5,7 @@
 The goal of the game is to get 21 or trying to reach as close as 21 as possible without going over by adding up the value of the cards. 
 
 
-### Game PAge:
+### Game Page:
 ![Game Page](screenshot/blackjack.png?)
 
 
