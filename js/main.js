@@ -196,11 +196,19 @@ function checkForWinner() {
 
 // displays the winner
 function displayWinner() {
-  if (winner === "player") {
+  if (winner === "player" && playerScore !== 21) {
     document.querySelector("#displayWinner").innerText = `YOU WIN!`;
-  } else if (winner === "dealer") {
+  } 
+  else if (winner === "player" && playerScore === 21) {
+    document.querySelector("#displayWinner").innerText = `BLACKJACK!`;
+  }
+  else if (winner === "dealer" && dealerScore !== 21) {
     document.querySelector("#displayWinner").innerText = `DEALER WINS!`;
-  } else {
+  } 
+  else if (winner === "dealer" && delaerScore === 21) {
+    document.querySelector("#displayWinner").innerText = `BLACKJACK!`;
+  }
+  else {
     document.querySelector("#displayWinner").innerText = `TIE`;
   }
 }
